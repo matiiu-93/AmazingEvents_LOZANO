@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header img{
+    max-width: 70%!important;
+}
+.navbar-nav a[href="#"]{
+    color: rgba(189,31,93,1)!important;
+    background-color: rgb(17, 10, 10);
+}
+body {
+    background: rgb(57,16,50);
+    background: linear-gradient(90deg, rgba(57,16,50,1) 0%, rgba(189,31,93,1) 100%);
+}
+main .navbar { 
+    color: rgb(228, 208, 208) !important;
+    width: fit-content;
+    margin:0 auto !important;
+    box-shadow: 3px 3px rgba(32, 28, 28, 0.685);
+}
+.form-check-input{
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.548)!important;
+    border-width: 3px !important;
+    border: 2px solid black!important;;
+}
+#checkboxes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+    background-color: rgba(64, 14, 94, 0.637);
+    color: rgb(87, 158, 135);
+    font-size: 1.3rem;
+    font-weight:bolder;
+    border-radius: 1rem;
+    box-shadow: 2px 2px rgba(63, 57, 57, 0.767);
+    max-width:fit-content;
+    justify-content: center;
+}
+.card{
+    width: 14rem !important;
+    background: rgb(87, 158, 135);
+    background: radial-gradient(circle, rgb(87, 158, 135,1) 0%, rgba(21,42,35,1) 100%);
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    border: 2px solid rgb(9, 17, 14);
+    box-shadow: 2px 2px 2px 2px rgb(53, 50, 46);
+}
+.card h5 {
+    font-weight: bolder;
+}
+.card-img-top {
+    contain:style;
+    height:fit-content;
+    object-fit: cover !important;
+}
+.card-columns .card {
+    display: inline-block;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 150px !important; 
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius:calc(0.25rem - 1px);
+}
+.carousel-item img{
+    width: 100%;
+    height:250px!important;
+    object-fit: cover!important;
+    border-radius: 1rem;
+    border: 2px solid rgba(211, 79, 154, 0.74);
+}
+.carousel-inner {
+    height: 100%;
+}
+
+li:hover{
+    transform: scale(1.2) translate(10px);
+    transition: 0.5s;
+}
+footer {
+    margin-top: 2vh;
+    border-radius: 2px;
+}
+footer p{
+    font-size:x-large;
+    color: orangered;
+    font-weight: bolder;text-align: end;
+}
+footer i{
+    border: 2px wheat
+}
+footer>div{
+    padding-left: 0rem;
+}
