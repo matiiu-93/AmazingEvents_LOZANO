@@ -1,0 +1,13 @@
+.card {
+    align-content: center;
+    width: 80vw !important;
+    padding:1vh!important;
+    object-fit: contain!important;
+}
+.card img {
+    height: 40vh!important;
+    width: auto !important;
+    object-fit: cover !important;
+    contain: style!important;
+
+}

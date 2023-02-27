@@ -1,0 +1,24 @@
+table{
+    border-collapse:collapse!important;
+    border: 2px black solid !important;
+    color: #35172b !important;
+    margin-top: 1rem;
+    empty-cells: show !important;
+}
+tr{
+    border: 2px black solid !important;
+}
+td{
+    border: 1px black solid !important;
+
+}
+th{
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: blue;
+}
+main table {
+    background-color: rgb(145, 137, 137);
+    padding: 1rem;
+    
+}
