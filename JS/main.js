@@ -2,14 +2,14 @@
 import data from './amazing.js';
 
 let events = data.events
+const element = document.getElementById("card-sec");
 
 function createCards (events) {
-    if(array.length == 0) {
-        element.innerHTML = `<h2>No hay coincidencias</h2>`
+    if(events.length == 0) {
+        element.innerHTML = `<h2 class="display-1 fw-bolder">No hay coincidencias</h2>`
         return
     }
-const element = document.getElementById("card-sec");
-let eventCard = ''
+    let eventCard = ''
 events.forEach ((event) => {
     eventCard += 
     `<div class="card" style="width: 18rem;">
@@ -25,10 +25,20 @@ events.forEach ((event) => {
 element.innerHTML = eventCard
 }
 createCards(events)
+
+
 //Checkboxes
 const contenedorCheck = document.getElementById('checkboxes')
 const input = document.querySelector('input')
 
+input.addEventListener('input', () => {
+    let filteredArray = textFiltering(events, input.value)
+    createCards(filteredArray)
+})
+contenedorCheck.addEventListener('change', () => {
+    let filteredArray = filterByCategory(events)
+    createCards(filteredArray)
+})
 input.addEventListener ('input', superFilter)
 
 contenedorCheck.addEventListener('change', superFilter)
@@ -42,21 +52,20 @@ function superFilter() {
 createCheckboxes (events)
 
 function createCheckboxes(array){
-    let arrayCategories = array.map(events => events.category)
-    console.log(arrayCategories) 
+    let arrayCategories = array.map(events => events.category) 
     let setCategory = new Set(arrayCategories)
-    console.log(setCategory)
     let arrayChecks = Array.from(setCategory)
-    console.log(arrayChecks);
     let checkbody = ''
     arrayChecks.forEach(category => {
         checkbody +=`<div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="${category}" value="${category}">
+        <input class="form-check-input" type="checkbox" role="switch" id="${category}" value="${category.toLowerCase()}">
         <label class="form-check-label" for="${category}">${category}</label>
         </div>`
     })
 contenedorCheck.innerHTML = checkbody
 }
+createCheckboxes(events)
+
 
 function textFiltering (array, text) {
     let filteredArray = array.filter (elemento => elemento.name.toLowerCase().includes(text.toLowerCase()))
@@ -64,18 +73,18 @@ function textFiltering (array, text) {
 }
 
 function filterByCategory(array) {
-    let checkboxes = document.querySelectorAll ("input [type='checkbox']")
-    console.log(checkboxes);
+    let checkboxes = document.querySelectorAll("input[type='checkbox']")
+    console.log(checkboxes)
     let arrayChecks = Array.from(checkboxes)
-    let arrayCheckChecked = arrayChecks.filter (check=> check.checked)
-    let arrayCheckCheckedValues = console.log(arrayCheckChecked)
-    arrayCheckChecked.map(checkChecked=> checkChecked.value)
-    let arrayFiltrado = array.filter (elemento => arrayCheckCheckedValues.includes(elemento.country))
-    console.log(arrayFiltrado)
-    if(arrayCheckChecked.length > 0) {
-        return arrayFiltrado
+    let arrayCheckChecked = arrayChecks.filter(check=> check.checked)
+    let arrayCheckCheckedValues = arrayCheckChecked.map(checkChecked=> checkChecked.value)
+    let filteredArray = array.filter(elemento => arrayCheckCheckedValues.includes(elemento.category.toLowerCase()))
+    console.log(filteredArray);
+    if(filteredArray.length > 0) {
+        return filteredArray
     } 
     return array
 }
+
 
 
