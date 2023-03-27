@@ -2,7 +2,25 @@
 import data from './amazing.js';
 
 let events = data.events
+
 const element = document.getElementById("card-sec");
+/*async function getEvents(){
+    let data = await fetch("./amazing.json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        return data;
+    })
+}
+getEvents() */
+
+    /* .then(data => {
+        eventList = data.events
+        console.log(eventList)
+        createCards(eventList)
+    
+    }).catch(err => console.error(err))
+}getEvents() */
 
 function createCards (events) {
     if(events.length == 0) {
@@ -17,7 +35,7 @@ events.forEach ((event) => {
     <div class="card-body">
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">${event.description}</p>
-        <a href="./details.html" class="btn btn-primary">Details</a>
+        <a href="./details.html?id=${event.id}" class="btn btn-primary">Details</a>
         <p>Price: $${event.price}</p>
     </div>
 </div>`;
@@ -84,7 +102,6 @@ function filterByCategory(array) {
         return filteredArray
     } 
     return array
-}
-
+} 
 
 
