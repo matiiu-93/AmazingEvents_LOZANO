@@ -1,76 +1,72 @@
-//Cards
+/* //Cards
 import data from './amazing.js';
-
-let events = data.events
+*/
 
 const element = document.getElementById("card-sec");
-/*async function getEvents(){
-    let data = await fetch("./amazing.json")
+
+async function getEvents(){
+    const {currentDate, events} = await fetch("/JS/amazing.json")
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        return data;
+    .then(result => {
+        console.log(result);
+        createCards(result.events);
+        createCheckboxes (result.events);
+        filterByCategory(result.events)
+        textFiltering(result.events, input.value)
+        input.addEventListener ('input', ()=>{
+            superFilter(result.events)
+        })
+        
+        contenedorCheck.addEventListener('change', ()=> {
+            superFilter(result.events)
+        })
+        return result;
     })
 }
-getEvents() */
+getEvents() 
 
-    /* .then(data => {
-        eventList = data.events
-        console.log(eventList)
-        createCards(eventList)
-    
-    }).catch(err => console.error(err))
-}getEvents() */
 
-function createCards (events) {
-    if(events.length == 0) {
-        element.innerHTML = `<h2 class="display-1 fw-bolder">No hay coincidencias</h2>`
+function createCards (array) {
+    if(array.length == 0) {
+        element.innerHTML = `<h2>No hay coincidencias</h2>`
         return
     }
     let eventCard = ''
-events.forEach ((event) => {
+    array.forEach ((event) => {
     eventCard += 
     `<div class="card" style="width: 18rem;">
     <img src="${event.image}" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">${event.description}</p>
-        <a href="./details.html?id=${event.id}" class="btn btn-primary">Details</a>
+        <a href="./details.html" class="btn btn-primary">Details</a>
         <p>Price: $${event.price}</p>
     </div>
 </div>`;
 });
 element.innerHTML = eventCard
 }
-createCards(events)
+/*
+    }).catch(err => console.error(err))
+}getEvents() */
+
+
 
 
 //Checkboxes
 const contenedorCheck = document.getElementById('checkboxes')
 const input = document.querySelector('input')
 
-input.addEventListener('input', () => {
-    let filteredArray = textFiltering(events, input.value)
-    createCards(filteredArray)
-})
-contenedorCheck.addEventListener('change', () => {
-    let filteredArray = filterByCategory(events)
-    createCards(filteredArray)
-})
-input.addEventListener ('input', superFilter)
 
-contenedorCheck.addEventListener('change', superFilter)
-
-function superFilter() {
+function superFilter(events) {
     let firstFilter = textFiltering (events, input.value);
     let secondFilter = filterByCategory (firstFilter)
     createCards(secondFilter)
 }
 
-createCheckboxes (events)
 
 function createCheckboxes(array){
-    let arrayCategories = array.map(events => events.category) 
+    let arrayCategories = array.map(eventsA => eventsA.category) 
     let setCategory = new Set(arrayCategories)
     let arrayChecks = Array.from(setCategory)
     let checkbody = ''
@@ -82,13 +78,12 @@ function createCheckboxes(array){
     })
 contenedorCheck.innerHTML = checkbody
 }
-createCheckboxes(events)
-
 
 function textFiltering (array, text) {
-    let filteredArray = array.filter (elemento => elemento.name.toLowerCase().includes(text.toLowerCase()))
+    let filteredArray = array.filter(elemento => elemento.name.toLowerCase().includes(text.toLowerCase()))
     return filteredArray
 }
+
 
 function filterByCategory(array) {
     let checkboxes = document.querySelectorAll("input[type='checkbox']")
@@ -102,6 +97,4 @@ function filterByCategory(array) {
         return filteredArray
     } 
     return array
-} 
-
-
+}
